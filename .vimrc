@@ -3,9 +3,15 @@ set expandtab
 set tabstop=4
 retab
 
+" autoindent
+set autoindent
+
 " linenumbers
 set number
 highlight LineNr ctermfg=darkgrey
+
+" disable search highlighting
+set nohlsearch
 
 " syntax highlighting
 set syntax=on
