@@ -5,6 +5,7 @@ retab
 
 " autoindent
 set autoindent
+set pastetoggle=<F3>
 
 " linenumbers
 set number
@@ -21,3 +22,6 @@ set background=dark
 
 " viminfo settings
 set viminfo='50,<1000,n~/.viminfo
+
+" statusbar settings
+set showcmd
