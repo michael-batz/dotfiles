@@ -18,7 +18,8 @@ highlight LineNr ctermfg=darkgrey
 set nohlsearch
 
 " syntax highlighting
-set syntax=on
+filetype plugin indent on
+syntax on
 
 " colors
 set background=dark
