@@ -28,7 +28,7 @@ copyFile()
     sourceFile="${1}"
     destinationDir="${2}"
     filename="$(basename "${1}")"
-    destinationFile="${destinationDir}/${filename}"
+    destinationFile="${destinationDir}/${filename%.tpl}"
 
     echo "file ${filename}:"
 
@@ -42,6 +42,19 @@ copyFile()
     # copy source to destination
     cp "${sourceFile}" "${destinationDir}"
     echo "- new file copied to ${destinationDir}"
+
+    # handle template files
+    if [[ $filename == *".tpl" ]]
+    then
+        echo "- this is a template file please put in values for the following vars"
+        templateFile="${destinationFile}.tpl"
+        replaceTemplateVars "${templateFile}"
+        # rename template file (remove *.tpl)
+        mv -f "${templateFile}" "${destinationFile}"
+        echo "- template renamed to ${destinationFile}"
+    fi
+
+    # echo newline
     echo ""
 }
 
@@ -67,9 +80,37 @@ copyDir()
     # copy directory to destination
     cp -r "${sourceObj}" "${destinationDir}"
     echo "- new dir copied to ${destinationDir}"
+
+    # handle template files in directory
+    for templateFile in $(find "${destinationObj}" -name "*.tpl")
+    do
+        echo "- ${templateFile} is a template file please put in values for the following vars"
+        replaceTemplateVars "${templateFile}"
+        # rename template file (remove *.tpl)
+        destinationFile=${templateFile%.tpl}
+        mv -f "${templateFile}" "${destinationFile}"
+        echo "- template renamed to ${destinationFile}"
+    done
+
+    # echo newline
     echo ""
 }
 
+# function replaceTemplateVars(filename)
+replaceTemplateVars()
+{
+    # get variables
+    filename=${1}
+
+    # ask user for value and replace it in file
+    IFS=$'\n'
+    for templateVarName in $(grep -o '{{var:.*}}' "${filename}" | sort | uniq)
+    do
+        read -p " - ${templateVarName}: " templateVarValue
+        sed -i "s#${templateVarName}#${templateVarValue}#g" "${filename}"
+    done
+    unset IFS
+}
 
 # walk over all files in ./files directory
 shopt -s nullglob
