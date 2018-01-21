@@ -29,3 +29,6 @@ set viminfo='50,<1000,n~/.viminfo
 
 " statusbar settings
 set showcmd
+
+" disable error bells
+set noerrorbells visualbell t_vb=

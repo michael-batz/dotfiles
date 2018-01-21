@@ -1,0 +1,7 @@
+# .inputrc
+
+# disable bell
+set bell-style none
+
+# settings for auto completion
+set show-all-if-ambiguous on
