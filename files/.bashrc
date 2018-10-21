@@ -8,6 +8,9 @@ PROMPT_DIRTRIM=4
 # alias definition
 alias vi='vim'
 
+# update window size after each command
+shopt -s checkwinsize
+
 # function: print git status information
 function prompt_git()
 {
