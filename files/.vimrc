@@ -8,7 +8,6 @@ retab
 
 " autoindent
 set autoindent
-set pastetoggle=<F3>
 
 " linenumbers
 set number
@@ -32,6 +31,10 @@ set showcmd
 
 " disable error bells
 set noerrorbells visualbell t_vb=
+
+" shortcuts
+set pastetoggle=<F3>
+map <F4> :set invnumber<CR>
 
 " support for specific file types:
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
