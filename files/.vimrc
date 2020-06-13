@@ -43,3 +43,4 @@ autocmd FileType yaml setlocal noautoindent nocindent nosmartindent indentexpr=
 autocmd BufRead,BufNewFile *.drl setlocal filetype java
 autocmd BufRead,BufNewFile *.ts setlocal filetype=javascript
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
