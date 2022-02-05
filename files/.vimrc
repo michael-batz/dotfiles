@@ -6,6 +6,9 @@ set shiftwidth=4
 set shiftround
 retab
 
+" backspace key
+set backspace=indent,eol,start
+
 " autoindent
 set autoindent
 
